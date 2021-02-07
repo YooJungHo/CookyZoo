@@ -1,0 +1,26 @@
+추가 필요로 설치하면 좋을 수도 있는 미들웨어
+
+express-session : 세션 관리용 미들웨어, 로그인 등의 이유로 구현할 때 유용할 수 있음.
+
+설치
+npm i express-session
+
+적용(app.js) 
+const session = require('express-session');
+
+app.use(cookieParser('secret code'));
+app.use(session({
+resave: false,
+saveUninitialized: false,
+secret:'secret code',
+cookie: {
+httpOnly: true,
+secure: false,
+},
+}));
+
+cookie-parser 미들웨어 뒤에 위치하는 것이 안전.(281p)
+
+
+그 외 참고.
+https://expressjs.com/ko/resources/middleware.html

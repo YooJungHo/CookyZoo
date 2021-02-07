@@ -1,0 +1,53 @@
+express-generator로 생성,
+express : 4.16.1
+
+
+npm i express-generator -g(express-generator 는 콘솔 명령어이므로(express '프로젝트명') 전역 설치가 필요.)
+
+express 프로젝트명 --view=pug --css sass
+* 템플릿엔진: PUG, 템플릿엔진이란? https://show-me-the-money.tistory.com/56
+추가링크 : https://hungc.tistory.com/90
+
+cd 프로젝트명 && npm i(설치 오류날 때도 있음, 재실행)
+
+만약 cd로 경로만 이동하고 바로 npm start를 할 경우, ex-generator가 package.json에 넣어준 의존성 모듈이 설치가 되어있지 않아 에러가 발생함. npm i 후 실행.
+
+npm start
+
+error : ENOENT: no such file or directory, scandir 'C:\Users\jungh\Desktop\project-test\realtest\node_modules\node-sass\vendor'
+-> npm rebuild node-sass
+
+npm start
+
+localhost:3000
+
+프로젝트 폴더 구조
+
+express : 4.16.1
+
+bin/www : Http모듈에 express모듈을 연결하며, port를 지정할 수 있음, 서버를 실행하는 script.
+
+public/ : 각종 리소스들을 모아놓은 폴더, 외부(browser 등의 client)에서 접근 가능한 파일들을 모은 디렉토리
+images,js,stylesheets 파일들이 들어있음.
+
+routes/ : (서버의 로직을 작성하는 곳, controller와 비슷)라우터들을 관리하는 곳,
+					index.js를 기반으로 라우팅 관리를 해주면 됨.
+					routes 디렉토리 안에 또 폴더를 만들어 관리해도 되고, 단지 index.js가 루트가 되게만 설정하면 됨.
+
+DB는 추후 models 폴더를 만들어 관리					
+
+views/: view파일(템플릿 파일)들을 관리하는 곳, 화면 부분 작성하는 곳.
+
+		app.js : 핵심적인 서버의 역할, 미들웨어 관리를 하는 곳.				
+		...
+		var app = express();  // --- 1 express 패키지 호출, app 변수 객체 대입
+		...
+		app.set('view engine', 'pug');  // --- 2 익스프레스 앱 설정.
+		...
+		app.use(logger('dev')); // --- 3 미들웨어를 연결하는 부분(미들웨어는 반드시 next()를 호출해야 다음 미들웨어로 넘어감.)
+		...
+		module.exports = app; // --- 4 app 객체를 모듈로 만듦.
+
+		참조링크 : https://velog.io/@new_wisdom/Node.js-6-Express-Express-generator%EB%A1%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0
+
+package.json : vue project와 동일.
