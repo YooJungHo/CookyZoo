@@ -22,6 +22,9 @@ module.exports = {
   rules: {
     // "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     // "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
-		"max-len" : "off"
+		"max-len" : "off",
+    "object-curly-spacing": "off", //0208 변경 회의때 말해야함(공유해야함)
+    "arrow-parens": "off",
+    "comma-dangle": "off"
   }
 };
