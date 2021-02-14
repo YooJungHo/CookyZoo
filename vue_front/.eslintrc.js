@@ -24,7 +24,7 @@ module.exports = {
     // "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
 		"max-len" : "off",
     "object-curly-spacing": "off", //0208 변경 회의때 말해야함(공유해야함)
-    "arrow-parens": "off",
-    "comma-dangle": "off"
+    "arrow-parens": "off", // 0210 제거 회의때 말해야 함
+    "comma-dangle": "off" // 0210 제거 회의때 말해야 함
   }
 };
