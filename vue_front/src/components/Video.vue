@@ -1,8 +1,6 @@
 <template>
 	<div id="container">
-		<video autoplay muted loop id="vid">
-			<source src="/videos/rolling.mp4" type="video/mp4" />
-		</video>
+		<video id="vid" :src="this.videoSource" autoplay />
 	</div>
 </template>
 
@@ -11,6 +9,8 @@ import * as THREE from "three";
 
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+
+import EventBus from "../EventBus";
 
 export default {
 	data() {
@@ -27,6 +27,9 @@ export default {
 			videoImageContext: undefined,
 			videoTexture: undefined,
 			clock: new THREE.Clock(),
+			videoSource: undefined,
+			videoSources: undefined,
+			stage: 0,
 		};
 	},
 	methods: {
@@ -159,6 +162,17 @@ export default {
 	mounted() {
 		this.init();
 		this.animate();
+		this.videoSources = ["/videos/rolling.mp4", "/videos/tree.mp4"];
+		this.videoSource = this.videoSources[this.stage];
+	},
+	created() {
+		EventBus.$on("next-step", () => {
+			if (this.stage < 1) {
+				this.stage++;
+				this.videoSource = this.videoSources[this.stage];
+				console.log(this.videoSource);
+			}
+		});
 	},
 };
 </script>
